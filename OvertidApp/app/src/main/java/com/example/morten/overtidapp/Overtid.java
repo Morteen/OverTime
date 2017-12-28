@@ -27,4 +27,20 @@ public class Overtid {
     public void setAntTimer(int antTimer) {
         this.antTimer = antTimer;
     }
+
+
+
+    //Mine metoder
+
+
+    public static String visTotatl(){
+        int teller=0;
+        for(int i=0;i<MainActivity.overtid.size();i++) {
+            teller+=MainActivity.overtid.get(i).getAntTimer();
+
+        }
+
+        return ""+teller;
+    }
+
 }

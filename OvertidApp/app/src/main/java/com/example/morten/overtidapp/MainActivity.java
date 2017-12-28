@@ -1,9 +1,12 @@
 package com.example.morten.overtidapp;
 
 import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,19 +19,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 static ArrayList<Overtid> overtid;
+    private List<DataUpdateListener> mListeners;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
         ViewPager pager=(ViewPager)findViewById(R.id.pager);
         PagerAdapter pAdpter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pAdpter);
        overtid= new ArrayList<Overtid>();
+        mListeners = new ArrayList<>();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +85,7 @@ static ArrayList<Overtid> overtid;
 
 
             reg.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
                 @Override
                 public void onClick(View v) {
 
@@ -87,6 +97,20 @@ static ArrayList<Overtid> overtid;
 
                         Overtid tid= new Overtid(Integer.parseInt(mAntTimer.getText().toString()));
                         overtid.add(tid);
+
+
+                       FragmentOne fragment = new FragmentOne();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.one, fragment);
+                        transaction.commit();
+
+
+
+
+
+
+
+                        dialog.dismiss();
                     }
 
 
@@ -112,5 +136,20 @@ static ArrayList<Overtid> overtid;
 
 
         return super.onOptionsItemSelected(item);
+    }
+    public interface DataUpdateListener {
+        void onDataUpdate();
+    }
+    public synchronized void registerDataUpdateListener(DataUpdateListener listener) {
+        mListeners.add(listener);
+    }
+
+    public synchronized void unregisterDataUpdateListener(DataUpdateListener listener) {
+        mListeners.remove(listener);
+    }
+    public synchronized void dataUpdated() {
+        for (DataUpdateListener listener : mListeners) {
+            listener.onDataUpdate();
+        }
     }
 }
