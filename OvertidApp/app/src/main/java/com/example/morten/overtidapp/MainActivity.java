@@ -19,11 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 static ArrayList<Overtid> overtid;
-    private List<DataUpdateListener> mListeners;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,7 @@ static ArrayList<Overtid> overtid;
         PagerAdapter pAdpter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pAdpter);
        overtid= new ArrayList<Overtid>();
-        mListeners = new ArrayList<>();
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -98,7 +97,7 @@ static ArrayList<Overtid> overtid;
                         Overtid tid= new Overtid(Integer.parseInt(mAntTimer.getText().toString()));
                         overtid.add(tid);
 
-
+  //Ved å kalle på fragmentet her oppdaterer det seg i takt med hva man legger inn
                        FragmentOne fragment = new FragmentOne();
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.one, fragment);
@@ -137,19 +136,27 @@ static ArrayList<Overtid> overtid;
 
         return super.onOptionsItemSelected(item);
     }
-    public interface DataUpdateListener {
-        void onDataUpdate();
-    }
-    public synchronized void registerDataUpdateListener(DataUpdateListener listener) {
-        mListeners.add(listener);
+
+
+
+
+    ///Lager data når man snur devicen
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("OvertidListe", overtid);
+
+
     }
 
-    public synchronized void unregisterDataUpdateListener(DataUpdateListener listener) {
-        mListeners.remove(listener);
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        overtid = savedInstanceState.getParcelableArrayList("OvertidListe");
+
     }
-    public synchronized void dataUpdated() {
-        for (DataUpdateListener listener : mListeners) {
-            listener.onDataUpdate();
-        }
-    }
+
+
+
 }
