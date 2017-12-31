@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="2dp">
+    >
+    <TextView
+        android:id="@+id/tvDato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dato"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="visible"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timer"
+        android:layout_below="@+id/tvDato"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault"/>
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Info"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tvTimer"
+
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

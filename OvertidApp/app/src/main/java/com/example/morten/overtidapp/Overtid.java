@@ -1,7 +1,10 @@
 package com.example.morten.overtidapp;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.ArrayList;
 
 /**
  * Created by morten on 27.12.2017.
@@ -9,10 +12,30 @@ import android.os.Parcelable;
 
 public class Overtid implements Parcelable {
     private String dato;
-    private int antTimer;
+    private double antTimer;
+    private String info;
 
+///Dette er til SQLliteBasen
+    static final String TABELL_NAVN = "Overtid";
+    static final String KOL_NAVN_Dato = "Dato";
+    static final String KOL_NAVN_antTimer ="antTimer";
+    static final String KOL_NAVN_Info = "Info";
+
+
+
+    public Overtid() {
+
+    }
     public Overtid(int antTimer) {
         this.antTimer = antTimer;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public String getDato() {
@@ -23,11 +46,11 @@ public class Overtid implements Parcelable {
         this.dato = dato;
     }
 
-    public int getAntTimer() {
+    public double getAntTimer() {
         return antTimer;
     }
 
-    public void setAntTimer(int antTimer) {
+    public void setAntTimer(double antTimer) {
         this.antTimer = antTimer;
     }
 
@@ -37,7 +60,7 @@ public class Overtid implements Parcelable {
 
 
     public static String visTotatl(){
-        int teller=0;
+       double teller=0.0;
         for(int i=0;i<MainActivity.overtid.size();i++) {
             teller+=MainActivity.overtid.get(i).getAntTimer();
 
@@ -49,7 +72,7 @@ public class Overtid implements Parcelable {
 
     protected Overtid(Parcel in) {
         dato = in.readString();
-        antTimer = in.readInt();
+        antTimer = in.readDouble();
     }
 
     @Override
@@ -62,7 +85,7 @@ public class Overtid implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(dato);
-        dest.writeInt(antTimer);
+        dest.writeDouble(antTimer);
     }
 
     @SuppressWarnings("unused")
@@ -77,4 +100,23 @@ public class Overtid implements Parcelable {
             return new Overtid[size];
         }
     };
+
+
+
+    public static ArrayList<Overtid> lagOvertidListeFraSqlite(Cursor cursor) {
+        ArrayList<Overtid> overtidListe = new ArrayList<Overtid>();
+        while (cursor.moveToNext()) {
+            Overtid tid = new Overtid();
+            tid.setDato(cursor.getString(cursor.getColumnIndex("Dato")));
+            tid.setAntTimer(cursor.getDouble(cursor.getColumnIndex("Timer")));
+            tid.setInfo(cursor.getString(cursor.getColumnIndex("Info")));
+
+
+            overtidListe .add(tid);
+        }
+
+        return overtidListe ;
+
+    }
+
 }

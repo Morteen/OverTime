@@ -21,7 +21,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-static ArrayList<Overtid> overtid;
+    static ArrayList<Overtid> overtid;
+    MyDbHandler dbhandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,17 @@ static ArrayList<Overtid> overtid;
         setSupportActionBar(toolbar);
 
 
-        ViewPager pager=(ViewPager)findViewById(R.id.pager);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
         PagerAdapter pAdpter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pAdpter);
-       overtid= new ArrayList<Overtid>();
+        overtid = new ArrayList<Overtid>();
+        dbhandler= new MyDbHandler(this,null,null,MyDbHandler.DATABASEVERSJON);
+          overtid=dbhandler.getAllOvertid(dbhandler);
+
+
+
+
+
 
 
 
@@ -89,24 +98,25 @@ static ArrayList<Overtid> overtid;
                 public void onClick(View v) {
 
                     //Sjekker for blankt felt og like passord
-                    if(mAntTimer.getText().toString().isEmpty() ){
+                    if (mAntTimer.getText().toString().isEmpty()) {
                         Toast.makeText(MainActivity.this, "Du må legge inn antall timer overtid", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    } else {
 
-                        Overtid tid= new Overtid(Integer.parseInt(mAntTimer.getText().toString()));
+                        Overtid tid = new Overtid(Integer.parseInt(mAntTimer.getText().toString()));
+
+                       tid.setDato("Dato 11");
+                       tid.setInfo("test info");
                         overtid.add(tid);
+                         dbhandler.addTid(tid);
 
-  //Ved å kalle på fragmentet her oppdaterer det seg i takt med hva man legger inn
-                       FragmentOne fragment = new FragmentOne();
+
+
+
+                        //Ved å kalle på fragmentet her oppdaterer det seg i takt med hva man legger inn
+                        FragmentOne fragment = new FragmentOne();
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.one, fragment);
                         transaction.commit();
-
-
-
-
-
 
 
                         dialog.dismiss();
@@ -129,15 +139,8 @@ static ArrayList<Overtid> overtid;
         }
 
 
-
-
-
-
-
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
     ///Lager data når man snur devicen
@@ -156,7 +159,6 @@ static ArrayList<Overtid> overtid;
         overtid = savedInstanceState.getParcelableArrayList("OvertidListe");
 
     }
-
 
 
 }

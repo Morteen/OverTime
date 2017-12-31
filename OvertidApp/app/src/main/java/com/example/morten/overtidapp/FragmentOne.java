@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -14,8 +15,10 @@ import android.widget.TextView;
  */
 public class FragmentOne extends android.support.v4.app.Fragment  {
 private String antTimerOvertid;
-TextView testText;
-int mNum;
+TextView testText, visbase;
+double mNum;
+MyDbHandler dbHandler;
+
     public FragmentOne() {
         // Required empty public constructor
     }
@@ -23,7 +26,10 @@ int mNum;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mNum = getArguments() != null ? getArguments().getInt("num") : 0;
+
+        /*Legger disse data her slik at tlf oppdatere seg når man snur den
+        onRestorInstanteState virker i fragmenter*/
+        mNum = getArguments() != null ? getArguments().getDouble("num") : 0.0;
         antTimerOvertid=mNum+"";
         if(MainActivity.overtid.size()>0){
             antTimerOvertid=Overtid.visTotatl();
@@ -39,10 +45,21 @@ int mNum;
         // Inflate the layout for this fragment
 
         View view= inflater.inflate(R.layout.fragment_fragment_one2, container, false);
+
+       dbHandler = new MyDbHandler(getActivity(),null,null,1);
+
         testText=(TextView)view.findViewById(R.id.testText);
+        visbase=(TextView)view.findViewById(R.id.visbase);
 
         testText.setText( antTimerOvertid);
-
+        if(MyDbHandler.doesDatabaseExist(getActivity(),MyDbHandler.DATABASE_NAME)){
+       if(dbHandler.dataBaseToString()!=""||dbHandler.dataBaseToString()!=null) {
+            //
+           Toast.makeText(getActivity(), "db stringen er ikke blank", Toast.LENGTH_SHORT).show();
+           visbase.setText(dbHandler.dataBaseToString());
+        }
+            Toast.makeText(getActivity(), "Basen finnes", Toast.LENGTH_SHORT).show();
+        }
 
         return view;
     }//Slutt på onCreateView
@@ -50,7 +67,7 @@ int mNum;
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("num", mNum);
+        outState.putDouble("num", mNum);
 
 
     }
