@@ -19,11 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
     static ArrayList<Overtid> overtid;
     MyDbHandler dbhandler;
-
+    Calendar calender;
+    private String dato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +34,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        calender = GregorianCalendar.getInstance();
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         PagerAdapter pAdpter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pAdpter);
         overtid = new ArrayList<Overtid>();
-        dbhandler= new MyDbHandler(this,null,null,MyDbHandler.DATABASEVERSJON);
-          overtid=dbhandler.getAllOvertid(dbhandler);
-
-
-
+        dbhandler = new MyDbHandler(this, null, null, MyDbHandler.DATABASEVERSJON);
+        overtid = dbhandler.getAllOvertid(dbhandler);
 
 
 
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
             final EditText mDato = (EditText) dialog.findViewById(R.id.editDato);
             final EditText mAntTimer = (EditText) dialog.findViewById(R.id.editAntTimer);
+            final EditText info = (EditText) dialog.findViewById(R.id.info);
             Button reg = (Button) dialog.findViewById(R.id.reg_btn);
             Button avbryt = (Button) dialog.findViewById(R.id.avslutt_btn);
             TextView tekst = (TextView) dialog.findViewById(R.id.dialogBoxTekst);
@@ -89,27 +90,35 @@ public class MainActivity extends AppCompatActivity {
             tekst.setText("Hei legg inn overtid");
 
 
-            mDato.setEnabled(false);
+
 
 
             reg.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
                 @Override
                 public void onClick(View v) {
-
+                    final int mnd = calender.get(Calendar.MONTH) + 1;
+                    final int dag = calender.get(Calendar.DAY_OF_MONTH);
+                    dato = dag + "." + mnd;
                     //Sjekker for blankt felt og like passord
                     if (mAntTimer.getText().toString().isEmpty()) {
                         Toast.makeText(MainActivity.this, "Du må legge inn antall timer overtid", Toast.LENGTH_SHORT).show();
                     } else {
 
                         Overtid tid = new Overtid(Integer.parseInt(mAntTimer.getText().toString()));
+                        if ((mDato.getText().toString().isEmpty())) {
+                            tid.setDato(dato);
 
-                       tid.setDato("Dato 11");
-                       tid.setInfo("test info");
+                        } else {
+                            tid.setDato(mDato.getText().toString());
+                        }
+                        if (!info.getText().toString().isEmpty()) {
+                            tid.setInfo(info.getText().toString());
+                        }
+
+
                         overtid.add(tid);
-                         dbhandler.addTid(tid);
-
-
+                        dbhandler.addTid(tid);
 
 
                         //Ved å kalle på fragmentet her oppdaterer det seg i takt med hva man legger inn
