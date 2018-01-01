@@ -7,16 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FragmentOne extends android.support.v4.app.Fragment  {
-private String antTimerOvertid;
-TextView testText, visbase;
-double mNum;
+private String antTimerOvertid,totSum;
+TextView antTimer, visbase,visTotalsum;
+double mNum,mSum;
 MyDbHandler dbHandler;
 
     public FragmentOne() {
@@ -30,10 +29,12 @@ MyDbHandler dbHandler;
         /*Legger disse data her slik at tlf oppdatere seg når man snur den
         onRestorInstanteState virker i fragmenter*/
         mNum = getArguments() != null ? getArguments().getDouble("num") : 0.0;
-        antTimerOvertid=mNum+"";
+        mSum = getArguments() != null ? getArguments().getDouble("sum") : 0.0;
+        antTimerOvertid=Double.toString(mNum);
+        totSum=Double.toString(mSum);
         if(MainActivity.overtid.size()>0){
             antTimerOvertid=Overtid.visTotatl();
-
+            totSum=Double.toString(Overtid.visTotatlIntjent());
 
         }
     }
@@ -48,18 +49,14 @@ MyDbHandler dbHandler;
 
        dbHandler = new MyDbHandler(getActivity(),null,null,1);
 
-        testText=(TextView)view.findViewById(R.id.testText);
+        antTimer=(TextView)view.findViewById(R.id.antTimer);
         visbase=(TextView)view.findViewById(R.id.visbase);
+        visTotalsum=(TextView)view.findViewById(R.id.visTotalsum) ;
 
-        testText.setText( antTimerOvertid);
-        if(MyDbHandler.doesDatabaseExist(getActivity(),MyDbHandler.DATABASE_NAME)){
-       if(dbHandler.dataBaseToString()!=""||dbHandler.dataBaseToString()!=null) {
-            //
-           Toast.makeText(getActivity(), "db stringen er ikke blank", Toast.LENGTH_SHORT).show();
-           visbase.setText(dbHandler.dataBaseToString());
-        }
-            Toast.makeText(getActivity(), "Basen finnes", Toast.LENGTH_SHORT).show();
-        }
+        antTimer.setText( antTimerOvertid);
+        visTotalsum.setText(totSum);
+
+
 
         return view;
     }//Slutt på onCreateView
@@ -68,6 +65,7 @@ MyDbHandler dbHandler;
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putDouble("num", mNum);
+        outState.putDouble("sum", mSum);
 
 
     }

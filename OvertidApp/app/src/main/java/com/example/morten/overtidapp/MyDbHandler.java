@@ -63,6 +63,8 @@ public class MyDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+INFO+"=\""+inputInfo+"\";");
     }
+
+
     public double getTotalTid(){
         double tid=0.0;
         SQLiteDatabase db = getWritableDatabase();

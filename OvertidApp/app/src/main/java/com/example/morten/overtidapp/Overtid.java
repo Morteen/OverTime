@@ -15,6 +15,8 @@ public class Overtid implements Parcelable {
     private double antTimer;
     private String info;
 
+    private static final double TIMEBETALING =330.0;
+
 ///Dette er til SQLliteBasen
     static final String TABELL_NAVN = "Overtid";
     static final String KOL_NAVN_Dato = "Dato";
@@ -67,6 +69,15 @@ public class Overtid implements Parcelable {
         }
 
         return ""+teller;
+    }
+    public static double visTotatlIntjent(){
+        double teller=0.0;
+        for(int i=0;i<MainActivity.overtid.size();i++) {
+            teller+=MainActivity.overtid.get(i).getAntTimer();
+
+        }
+
+        return teller*TIMEBETALING;
     }
 
 
