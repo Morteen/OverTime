@@ -33,11 +33,12 @@ MyDbHandler dbHandler;
         curMnd = getArguments() != null ? getArguments().getDouble("curMnd") : 0.0;
         antTimerOvertid=Double.toString(mNum);
         totSum=Double.toString(mSum);
-        //timerCurrMnd=Double.toString(curMnd);
+        timerCurrMnd=Double.toString(curMnd);
+
         if(MainActivity.overtid.size()>0){
             antTimerOvertid=Overtid.visTotatl();
             totSum=Double.toString(Overtid.visTotatlIntjent());
-            //curMnd=Overtid.timerDenneMnd();
+            timerCurrMnd=Double.toString(Overtid.timerDenneMnd());
 
         }
     }
@@ -55,11 +56,13 @@ MyDbHandler dbHandler;
         antTimer=(TextView)view.findViewById(R.id.antTimer);
         visbase=(TextView)view.findViewById(R.id.visbase);
         visTotalsum=(TextView)view.findViewById(R.id.visTotalsum) ;
-        //timerDenneMnd=(TextView)view.findViewById(R.id.timerDenneMnd);
+
+        timerDenneMnd=(TextView)view.findViewById(R.id.timerDenneMnd);
 
         antTimer.setText( antTimerOvertid);
         visTotalsum.setText(totSum);
-        //timerDenneMnd.setText(timerCurrMnd);
+        timerDenneMnd.setText(timerCurrMnd);
+       
 
 
 

@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 /**
  * Created by morten on 27.12.2017.
@@ -144,16 +145,21 @@ public class Overtid implements Parcelable {
         double sum = 0;
         String sjekk;
         String currMnd = Integer.toString(calender.get(Calendar.MONTH) + 1);
+
         for (int i = 0; i < MainActivity.overtid.size(); i++) {
             sjekk = MainActivity.overtid.get(i).getDato();
-            String[] date = sjekk.split(".");
+            String[] date = sjekk.split(Pattern.quote("."));
+
             if (currMnd.equals(date[1])) {
+
                 sum += MainActivity.overtid.get(i).getAntTimer();
+
             }
         }
 
 
         return sum;
+
     }
 
 }

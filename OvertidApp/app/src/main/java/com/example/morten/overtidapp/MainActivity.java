@@ -118,16 +118,11 @@ public class MainActivity extends AppCompatActivity {
 
                         overtid.add(tid);
                         dbhandler.addTid(tid);
-                        //FragmentOne.antTimerOvertid=Overtid.visTotatl();
-                        //FragmentOne.totSum=Double.toString(Overtid.visTotatlIntjent());
+                        //Oppdatere teksten i framentOne direkte med static textview :-)
           FragmentOne.antTimer.setText(Overtid.visTotatl());
           FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
 
-                        //Ved å kalle på fragmentet her oppdaterer det seg i takt med hva man legger inn
-                       /*FragmentOne fragment = new FragmentOne();
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.one, fragment);
-                        transaction.commit();*/
+
 
 
                         dialog.dismiss();

@@ -28,15 +28,18 @@
 
         <TextView
             android:id="@+id/labelforTotTimerDenneMnd"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Overtid denne månden"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:id="@+id/timerDenneMnd"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="timer "
+            android:paddingLeft="5dp"
+            android:layout_marginLeft="2dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     </LinearLayout>
