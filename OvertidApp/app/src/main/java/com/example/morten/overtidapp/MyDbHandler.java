@@ -53,15 +53,17 @@ public class MyDbHandler extends SQLiteOpenHelper {
         values.put(TIMER,Double.toString(tid.getAntTimer()));
         values.put(INFO,tid.getInfo());
 
+
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_NAME,null,values);
         db.close();
     }
 
     //slett rad fra basen
-    public void deleteTid(String inputInfo){
+    public void deleteTid(int id){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+INFO+"=\""+inputInfo+"\";");
+        //db.execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+COL_ID+"=\""+id+"\";");
+        db.execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+COL_ID+"="+id+";");
     }
 
 
@@ -138,7 +140,7 @@ public class MyDbHandler extends SQLiteOpenHelper {
         ArrayList<Overtid> tid = new ArrayList<Overtid>();
         SQLiteDatabase SQ = dop.getReadableDatabase();
         String[] culoums = {
-                DATO,TIMER,INFO
+                COL_ID,DATO,TIMER,INFO
 
         };
         Cursor c = SQ.query(TABLE_NAME, culoums, null, null, null, null, null);//null verdien er forskjellig sorteringer having orderby osv
@@ -147,6 +149,7 @@ public class MyDbHandler extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Overtid t = new Overtid();
+                t.setId(Integer.parseInt(c.getString((c.getColumnIndex(COL_ID)))));
                 t.setDato(c.getString((c.getColumnIndex(DATO))));
                 t.setAntTimer(Double.parseDouble(c.getString(c.getColumnIndex(TIMER))));
                 t.setInfo(c.getString(c.getColumnIndex(INFO)));

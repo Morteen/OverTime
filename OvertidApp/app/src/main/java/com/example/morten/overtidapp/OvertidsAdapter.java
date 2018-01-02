@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ import java.util.ArrayList;
  * Created by morten on 30.12.2017.
  */
 
-public class OvertidsAdapter  extends BaseAdapter {
+public class OvertidsAdapter  extends BaseAdapter implements AdapterView.OnItemClickListener {
 
 
     Context mContext;
@@ -32,6 +34,8 @@ public class OvertidsAdapter  extends BaseAdapter {
     public int getCount() {
         return minOvertid.size();
     }
+
+
 
     @Override
     public Object getItem(int position) {
@@ -66,6 +70,7 @@ public class OvertidsAdapter  extends BaseAdapter {
 
 
        Overtid currentTid = minOvertid.get(position);
+
         //Setter verdien til  Overtid objektet  i denne posisjonen i riktig textview
         viewHolder.tvDato.setText(currentTid.getDato());
         viewHolder.tvTimer.setText(Double.toString(currentTid.getAntTimer()));
@@ -76,6 +81,10 @@ public class OvertidsAdapter  extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(mContext, "hello", Toast.LENGTH_SHORT).show();
+    }
 
 
     private static class ViewHolder {

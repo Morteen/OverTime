@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -119,13 +118,16 @@ public class MainActivity extends AppCompatActivity {
 
                         overtid.add(tid);
                         dbhandler.addTid(tid);
-
+                        //FragmentOne.antTimerOvertid=Overtid.visTotatl();
+                        //FragmentOne.totSum=Double.toString(Overtid.visTotatlIntjent());
+          FragmentOne.antTimer.setText(Overtid.visTotatl());
+          FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
 
                         //Ved å kalle på fragmentet her oppdaterer det seg i takt med hva man legger inn
-                        FragmentOne fragment = new FragmentOne();
+                       /*FragmentOne fragment = new FragmentOne();
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.one, fragment);
-                        transaction.commit();
+                        transaction.commit();*/
 
 
                         dialog.dismiss();

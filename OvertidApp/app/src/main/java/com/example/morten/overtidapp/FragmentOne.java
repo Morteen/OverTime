@@ -13,9 +13,9 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentOne extends android.support.v4.app.Fragment  {
-private String antTimerOvertid,totSum;
-TextView antTimer, visbase,visTotalsum;
-double mNum,mSum;
+static String antTimerOvertid,totSum,timerCurrMnd;
+static TextView antTimer, visbase,visTotalsum,timerDenneMnd;
+double mNum,mSum,curMnd;
 MyDbHandler dbHandler;
 
     public FragmentOne() {
@@ -30,11 +30,14 @@ MyDbHandler dbHandler;
         onRestorInstanteState virker i fragmenter*/
         mNum = getArguments() != null ? getArguments().getDouble("num") : 0.0;
         mSum = getArguments() != null ? getArguments().getDouble("sum") : 0.0;
+        curMnd = getArguments() != null ? getArguments().getDouble("curMnd") : 0.0;
         antTimerOvertid=Double.toString(mNum);
         totSum=Double.toString(mSum);
+        //timerCurrMnd=Double.toString(curMnd);
         if(MainActivity.overtid.size()>0){
             antTimerOvertid=Overtid.visTotatl();
             totSum=Double.toString(Overtid.visTotatlIntjent());
+            //curMnd=Overtid.timerDenneMnd();
 
         }
     }
@@ -52,9 +55,11 @@ MyDbHandler dbHandler;
         antTimer=(TextView)view.findViewById(R.id.antTimer);
         visbase=(TextView)view.findViewById(R.id.visbase);
         visTotalsum=(TextView)view.findViewById(R.id.visTotalsum) ;
+        //timerDenneMnd=(TextView)view.findViewById(R.id.timerDenneMnd);
 
         antTimer.setText( antTimerOvertid);
         visTotalsum.setText(totSum);
+        //timerDenneMnd.setText(timerCurrMnd);
 
 
 
@@ -66,6 +71,7 @@ MyDbHandler dbHandler;
         super.onSaveInstanceState(outState);
         outState.putDouble("num", mNum);
         outState.putDouble("sum", mSum);
+        outState.putDouble("curMnd",curMnd);
 
 
     }

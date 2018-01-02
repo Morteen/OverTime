@@ -5,6 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by morten on 27.12.2017.
@@ -12,24 +14,33 @@ import java.util.ArrayList;
 
 public class Overtid implements Parcelable {
     private String dato;
+    private int id;
     private double antTimer;
     private String info;
 
-    private static final double TIMEBETALING =330.0;
+    private static final double TIMEBETALING = 330.0;
 
-///Dette er til SQLliteBasen
+    ///Dette er til SQLliteBasen
     static final String TABELL_NAVN = "Overtid";
     static final String KOL_NAVN_Dato = "Dato";
-    static final String KOL_NAVN_antTimer ="antTimer";
+    static final String KOL_NAVN_antTimer = "antTimer";
     static final String KOL_NAVN_Info = "Info";
-
 
 
     public Overtid() {
 
     }
+
     public Overtid(int antTimer) {
         this.antTimer = antTimer;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getInfo() {
@@ -57,27 +68,27 @@ public class Overtid implements Parcelable {
     }
 
 
-
     //Mine metoder
 
 
-    public static String visTotatl(){
-       double teller=0.0;
-        for(int i=0;i<MainActivity.overtid.size();i++) {
-            teller+=MainActivity.overtid.get(i).getAntTimer();
+    public static String visTotatl() {
+        double teller = 0.0;
+        for (int i = 0; i < MainActivity.overtid.size(); i++) {
+            teller += MainActivity.overtid.get(i).getAntTimer();
 
         }
 
-        return ""+teller;
+        return "" + teller;
     }
-    public static double visTotatlIntjent(){
-        double teller=0.0;
-        for(int i=0;i<MainActivity.overtid.size();i++) {
-            teller+=MainActivity.overtid.get(i).getAntTimer();
+
+    public static double visTotatlIntjent() {
+        double teller = 0.0;
+        for (int i = 0; i < MainActivity.overtid.size(); i++) {
+            teller += MainActivity.overtid.get(i).getAntTimer();
 
         }
 
-        return teller*TIMEBETALING;
+        return teller * TIMEBETALING;
     }
 
 
@@ -90,7 +101,6 @@ public class Overtid implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
 
 
     @Override
@@ -113,7 +123,6 @@ public class Overtid implements Parcelable {
     };
 
 
-
     public static ArrayList<Overtid> lagOvertidListeFraSqlite(Cursor cursor) {
         ArrayList<Overtid> overtidListe = new ArrayList<Overtid>();
         while (cursor.moveToNext()) {
@@ -123,11 +132,28 @@ public class Overtid implements Parcelable {
             tid.setInfo(cursor.getString(cursor.getColumnIndex("Info")));
 
 
-            overtidListe .add(tid);
+            overtidListe.add(tid);
         }
 
-        return overtidListe ;
+        return overtidListe;
 
+    }
+
+    public static Double timerDenneMnd() {
+        Calendar calender = GregorianCalendar.getInstance();
+        double sum = 0;
+        String sjekk;
+        String currMnd = Integer.toString(calender.get(Calendar.MONTH) + 1);
+        for (int i = 0; i < MainActivity.overtid.size(); i++) {
+            sjekk = MainActivity.overtid.get(i).getDato();
+            String[] date = sjekk.split(".");
+            if (currMnd.equals(date[1])) {
+                sum += MainActivity.overtid.get(i).getAntTimer();
+            }
+        }
+
+
+        return sum;
     }
 
 }
