@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Calendar calender;
     private String dato;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
         overtid = new ArrayList<Overtid>();
         dbhandler = new MyDbHandler(this, null, null, MyDbHandler.DATABASEVERSJON);
         overtid = dbhandler.getAllOvertid(dbhandler);
-
-
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -89,9 +87,6 @@ public class MainActivity extends AppCompatActivity {
             tekst.setText("Hei legg inn overtid");
 
 
-
-
-
             reg.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
                 @Override
@@ -104,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Du må legge inn antall timer overtid", Toast.LENGTH_SHORT).show();
                     } else {
 
-                        Overtid tid = new Overtid(Integer.parseInt(mAntTimer.getText().toString()));
+                        Overtid tid = new Overtid(Double.parseDouble(mAntTimer.getText().toString()));
                         if ((mDato.getText().toString().isEmpty())) {
                             tid.setDato(dato);
 
@@ -119,10 +114,16 @@ public class MainActivity extends AppCompatActivity {
                         overtid.add(tid);
                         dbhandler.addTid(tid);
                         //Oppdatere teksten i framentOne direkte med static textview :-)
-          FragmentOne.antTimer.setText(Overtid.visTotatl());
-          FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
+                        FragmentOne.antTimer.setText(Overtid.visTotatl());
+                        FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
+                        FragmentOne.timerDenneMnd.setText(Double.toString(Overtid.timerDenneMnd()));
+                        FragmentOne.progressStatus = Overtid.avstandTilTargetSum();
+                        FragmentOne.progressBar.setProgress(FragmentOne.progressStatus);
 
-
+                        FragmentOne. timerCurrMnd=Double.toString(Overtid.timerDenneMnd());
+                        FragmentOne.  sumDenneMnd.setText(FragmentOne.sumCurrMnd);
+                        FragmentOne.progressStatusDenneMND=Overtid.avstandDenneMND();
+                        FragmentOne.  progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
 
 
                         dialog.dismiss();

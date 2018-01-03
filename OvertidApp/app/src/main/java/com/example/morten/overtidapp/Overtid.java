@@ -20,6 +20,8 @@ public class Overtid implements Parcelable {
     private String info;
 
     private static final double TIMEBETALING = 330.0;
+    final static int TARGETSUM=20000;
+    final static int TARGET_OF_MND=3300;
 
     ///Dette er til SQLliteBasen
     static final String TABELL_NAVN = "Overtid";
@@ -32,7 +34,7 @@ public class Overtid implements Parcelable {
 
     }
 
-    public Overtid(int antTimer) {
+    public Overtid(double antTimer) {
         this.antTimer = antTimer;
     }
 
@@ -160,6 +162,32 @@ public class Overtid implements Parcelable {
 
         return sum;
 
+    }
+    public  static int avstandTilTargetSum(){
+       double inntjent=visTotatlIntjent();
+       if((int) Math.round((double)inntjent/TARGETSUM *100)>1){
+           //Dette er en måte å avrunde fra double til int på en korrekt måte
+           return  (int) Math.round((double)inntjent/TARGETSUM *100);
+       }else{
+           return 1;
+       }
+
+    }
+
+    public static double lonnDenneMND(){
+        double timer=timerDenneMnd();
+        double lonn=TIMEBETALING*timer;
+        return lonn;
+    }
+
+    public static int avstandDenneMND(){
+        double lonn=lonnDenneMND();
+        if((int) Math.round((double)lonn/TARGET_OF_MND *100)>0){
+            return (int) Math.round((double)lonn/TARGET_OF_MND *100);
+        }
+       else{
+            return 0;
+        }
     }
 
 }

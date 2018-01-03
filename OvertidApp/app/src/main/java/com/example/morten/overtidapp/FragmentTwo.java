@@ -55,9 +55,16 @@ private MyDbHandler db;
             MainActivity.overtid.remove(position);
             adapter.notifyDataSetChanged();
 
-//Oppdaterer fragOne tekstene
+           //Oppdaterer fragOne tekstene
             FragmentOne.antTimer.setText(Overtid.visTotatl());
             FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
+            FragmentOne.timerDenneMnd.setText(Double.toString(Overtid.timerDenneMnd()));
+            FragmentOne.progressStatus = Overtid.avstandTilTargetSum();
+            FragmentOne.progressBar.setProgress(FragmentOne.progressStatus);
+            FragmentOne. timerCurrMnd=Double.toString(Overtid.timerDenneMnd());
+            FragmentOne.  sumDenneMnd.setText(FragmentOne.sumCurrMnd);
+            FragmentOne.progressStatusDenneMND=Overtid.avstandDenneMND();
+            FragmentOne.  progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
 
 
         }
