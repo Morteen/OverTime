@@ -62,7 +62,7 @@ MyDbHandler dbHandler;
         antTimer.setText( antTimerOvertid);
         visTotalsum.setText(totSum);
         timerDenneMnd.setText(timerCurrMnd);
-       
+
 
 
 

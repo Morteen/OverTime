@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -48,22 +47,20 @@ private MyDbHandler db;
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), MainActivity.overtid.size()+" Før sletting", Toast.LENGTH_SHORT).show();
-        int minId=MainActivity.overtid.get(position).getId();
-if(position>-1){
-    db.deleteTid(minId);
-    ArrayList<Overtid> testlist= db.getAllOvertid(db);
-    Toast.makeText(getActivity(), testlist.size()+" ETTER sletting", Toast.LENGTH_SHORT).show();
-    MainActivity.overtid.remove(position);
-    adapter.notifyDataSetChanged();
+
+        int minId = MainActivity.overtid.get(position).getId();
+        if (position > -1) {
+            db.deleteTid(minId);
+
+            MainActivity.overtid.remove(position);
+            adapter.notifyDataSetChanged();
 
 //Oppdaterer fragOne tekstene
-    FragmentOne.antTimer.setText(Overtid.visTotatl());
-    FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
+            FragmentOne.antTimer.setText(Overtid.visTotatl());
+            FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
 
 
-
-}
+        }
 
 
 
