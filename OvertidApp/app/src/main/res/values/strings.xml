@@ -6,11 +6,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragEntest">Her kommer oversikt over totalt antall og denne måneden</string>
     <string name="HeaderFragEn">Overtid Stats :-)</string>
-
+    <string name="avbryt">Avbryt</string>
+    <string name="ok">Ok</string>
 
 
     <!--Spinner -->
     <string-array name="mnd_array">
+        <item>Vis alle</item>
         <item>Januar</item>
         <item>Februar</item>
         <item>Mars</item>

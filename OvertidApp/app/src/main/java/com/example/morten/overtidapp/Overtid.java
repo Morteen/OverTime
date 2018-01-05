@@ -189,5 +189,37 @@ public class Overtid implements Parcelable {
             return 0;
         }
     }
+    public static ArrayList<Overtid> velgMnd( int sjekk) {
+        ArrayList<Overtid>currMND= new ArrayList<Overtid>();
 
+        if (MainActivity.overtid.size() > 0) {
+
+            if(sjekk==0){
+                return MainActivity.overtid;
+            }
+else {
+                for (int i = 0; i < MainActivity.overtid.size(); i++) {
+
+                    String[] date = MainActivity.overtid.get(i).getDato().split(Pattern.quote("."));
+
+                    if (Integer.toString(sjekk).equals(date[1])) {
+
+                        currMND.add(MainActivity.overtid.get(i));
+
+                    }
+                }
+                return currMND;
+
+            }
+
+
+        }//slutt på If fra linje 195
+
+
+
+return null;
+
+
+
+    }
 }
