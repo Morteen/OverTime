@@ -1,11 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/one"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@drawable/hellas"
-    android:padding="10dp"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context="com.example.morten.overtidapp.FragmentOne"
     tools:ignore="InvalidId">
 
@@ -18,149 +19,232 @@
         android:layout_centerVertical="true"
         android:text="@string/HeaderFragEn"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+    <!--Card for denne MND-->
 
-    <LinearLayout
-        android:id="@+id/mdnLayout"
-        android:layout_width="match_parent"
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardVMnd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/visbase"
-        android:orientation="horizontal">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:elevation="10dp"
+       
+        android:padding="15dp"
+        android:paddingRight="20dp"
 
-        <TextView
-            android:id="@+id/labelforTotTimerDenneMnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Overtid denne månden"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <TextView
-            android:id="@+id/timerDenneMnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="timer "
-            android:paddingLeft="5dp"
-            android:layout_marginLeft="2dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        app:cardCornerRadius="10dp">
 
 
-
-
-
-
-    </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
-        android:id="@+id/LabelSumDenneMnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inntjent denne måneden: "
-        android:paddingLeft="5dp"
-        android:layout_marginLeft="2dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-    <TextView
-        android:id="@+id/sumDenneMnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sum"
-        android:paddingLeft="5dp"
-        android:layout_marginLeft="2dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-</LinearLayout>
-
-
-    <ProgressBar
-        android:id="@+id/denneMNDprogressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:max="100"
-        android:maxWidth="90dp"
-        android:minHeight="50dp"
-        android:padding="5dp"
-        android:progress="1" />
-
-
-
+        <!--LinearLayout for å legge de andre vertikalt-->
         <LinearLayout
-            android:id="@+id/timer"
-            android:layout_below="@+id/mndLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-
-
-            <TextView
-                android:id="@+id/labelForTotTimer"
-                android:layout_width="wrap_content"
+            <!--LinearLayout for å legge to textview side om side-->
+            <LinearLayout
+                android:id="@+id/mdnLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/labelforTotTimerDenneMnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Overtid denne månden"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:id="@+id/timerDenneMnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:paddingLeft="5dp"
+                    android:text="timer "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            </LinearLayout>
+
+            <!--LinearLayout for å legge to textview side om side-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/LabelSumDenneMnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:paddingLeft="5dp"
+                    android:text="Inntjent denne måneden: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:id="@+id/sumDenneMnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:paddingLeft="5dp"
+                    android:text="Sum"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/denneMNDprogressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:max="100"
+                    android:maxWidth="70dp"
+                    android:minHeight="50dp"
+                    android:padding="5dp"
+                    android:progress="1" />
+
+                <TextView
+                    android:id="@+id/prosentMND"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="prosent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView><!--Slutt på CardView for denne MND-->
+
+    <!--Card for denne Hele året-->
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardAar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/visbase"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:elevation="100dp"
+        android:padding="15dp"
+        android:paddingRight="20dp"
+
+        app:cardCornerRadius="10dp">
+
+
+        <!--LinearLayout for å legge de andre vertikalt-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/timer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mndLayout"
                 android:gravity="left"
+                android:orientation="horizontal">
 
 
-                android:text="Totalt antall timer i år"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <TextView
+                    android:id="@+id/labelForTotTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Totalt antall timer i år"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
-            <TextView
-                android:id="@+id/antTimer"
+                <TextView
+                    android:id="@+id/antTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timer"
+                android:gravity="left"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/labelforTotsum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Totalt inntjent i år:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+                <TextView
+                    android:id="@+id/visTotalsum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+                    />
+
+                <!--android:layout_below="@+id/labelforTotsum"-->
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:orientation="horizontal">
 
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <ProgressBar
+                    android:id="@+id/MyprogressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:max="100"
+                    android:maxWidth="90dp"
+                    android:minHeight="50dp"
+                    android:padding="5dp"
+                    android:progress="1" />
+
+
+                <TextView
+                    android:id="@+id/prosentAar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="prosent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timer"
-        android:gravity="left"
-        android:orientation="horizontal"
-
-        >
-
-        <TextView
-            android:id="@+id/labelforTotsum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="Totalt inntjent i år:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-
-        <TextView
-            android:id="@+id/visTotalsum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-
-            />
-
-        <!--android:layout_below="@+id/labelforTotsum"-->
-    </LinearLayout>
-
-
-    <ProgressBar
-        android:id="@+id/MyprogressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:max="100"
-        android:maxWidth="90dp"
-        android:minHeight="50dp"
-        android:padding="5dp"
-        android:progress="1" />
+    </android.support.v7.widget.CardView><!--Slutt på CardView for denne MND-->
 
 
 </LinearLayout>
+
+

@@ -16,7 +16,7 @@ import android.widget.Toast;
  */
 public class FragmentOne extends android.support.v4.app.Fragment  {
 static String antTimerOvertid,totSum,timerCurrMnd,sumCurrMnd;
-static TextView antTimer, visbase,visTotalsum,timerDenneMnd,sumDenneMnd;
+static TextView antTimer, visbase,visTotalsum,timerDenneMnd,sumDenneMnd,prosentMND,prosentAar;
 double mNum,mSum,curMnd,curMndSum;
 MyDbHandler dbHandler;
 static ProgressBar progressBar,progressDenneMND;
@@ -68,6 +68,8 @@ static int progressStatus, progressStatusDenneMND;
         sumDenneMnd=(TextView)view.findViewById(R.id.sumDenneMnd);
         progressBar=(ProgressBar)view.findViewById(R.id.MyprogressBar);
         progressDenneMND=(ProgressBar)view.findViewById(R.id.denneMNDprogressBar);
+        prosentMND=(TextView)view.findViewById(R.id.prosentMND);
+        prosentAar=(TextView)view.findViewById(R.id.prosentAar);
 
 
 
@@ -78,7 +80,9 @@ static int progressStatus, progressStatusDenneMND;
         timerDenneMnd.setText(timerCurrMnd);
         sumDenneMnd.setText(sumCurrMnd);
         progressBar.setProgress(progressStatus);
+        prosentAar.setText(progressStatus+" %");
         progressDenneMND.setProgress(progressStatusDenneMND);
+        prosentMND.setText(progressStatusDenneMND+" %");
 
 
 
@@ -93,6 +97,7 @@ static int progressStatus, progressStatusDenneMND;
         outState.putDouble("sum", mSum);
         outState.putDouble("curMnd",curMnd);
         outState.putDouble("curMndsum",curMndSum);
+        // TODO: 06.01.2018  Legg til progrss status slik at disse virker ved orienterings forandring
 
 
     }
