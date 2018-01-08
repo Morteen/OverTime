@@ -81,17 +81,19 @@ public class Overtid implements Parcelable {
 
         }
 
-        return "" + teller;
+        return "" + (int) Math.round((double)teller);
     }
 
     public static double visTotatlIntjent() {
         double teller = 0.0;
+        double temp;
         for (int i = 0; i < MainActivity.overtid.size(); i++) {
             teller += MainActivity.overtid.get(i).getAntTimer();
 
         }
-
-        return teller * TIMEBETALING;
+        //temp variablen er fordi jeg ikke gidder å forandre alleveriene til int
+        temp=(int) Math.round((double)teller*TIMEBETALING);
+        return temp;
     }
 
 
@@ -175,8 +177,9 @@ public class Overtid implements Parcelable {
     }
 
     public static double lonnDenneMND(){
+
         double timer=timerDenneMnd();
-        double lonn=TIMEBETALING*timer;
+        double lonn=(int) Math.round((double)TIMEBETALING*timer);
         return lonn;
     }
 

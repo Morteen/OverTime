@@ -104,7 +104,23 @@ static int progressStatus, progressStatusDenneMND;
 
 
 
+   public static void oppdaterFragOne(){
 
+
+            //Oppdaterer fragOne tekstene
+            FragmentOne.antTimer.setText(Overtid.visTotatl());
+            FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
+            FragmentOne.timerDenneMnd.setText(Double.toString(Overtid.timerDenneMnd()));
+            FragmentOne.progressStatus = Overtid.avstandTilTargetSum();
+            FragmentOne.progressBar.setProgress(FragmentOne.progressStatus);
+            FragmentOne. prosentAar.setText(FragmentOne.progressStatus+" %");
+            FragmentOne.timerCurrMnd = Double.toString(Overtid.timerDenneMnd());
+            FragmentOne.sumDenneMnd.setText(FragmentOne.sumCurrMnd);
+            FragmentOne.progressStatusDenneMND = Overtid.avstandDenneMND();
+            FragmentOne. prosentMND.setText(FragmentOne.progressStatusDenneMND+" %");
+            FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
+
+        }
 
 
 

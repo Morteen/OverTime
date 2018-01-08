@@ -113,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
 
                         overtid.add(tid);
                         dbhandler.addTid(tid);
+                        FragmentOne.oppdaterFragOne();
                         //Oppdatere teksten i framentOne direkte med static textview :-)
-                        FragmentOne.antTimer.setText(Overtid.visTotatl());
+                       /* FragmentOne.antTimer.setText(Overtid.visTotatl());
                         FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
                         FragmentOne.timerDenneMnd.setText(Double.toString(Overtid.timerDenneMnd()));
                         FragmentOne.progressStatus = Overtid.avstandTilTargetSum();
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         FragmentOne.progressStatusDenneMND=Overtid.avstandDenneMND();
                         FragmentOne. prosentMND.setText(FragmentOne.progressStatusDenneMND+" %");
                         FragmentOne.  progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
+                        */
 
 
                         dialog.dismiss();

@@ -30,6 +30,22 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
     OvertidsAdapter adapter;
     Spinner spinner;
     Dialog dialog;
+    String[] spinnerItems = new String[]{
+            "Vis alle",
+            "Januar",
+            "Februar",
+            "Mars",
+            "April",
+            "Mai",
+            "Juni",
+            "Juli",
+            "Agust",
+            "September",
+            "Oktober",
+            "November",
+            "Desember",
+
+    };
 
     public FragmentTwo() {
         // Required empty public constructor
@@ -85,11 +101,14 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
         startListView.setAdapter(adapter);
 
         spinner = (Spinner) view.findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+       /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.mnd_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
+        ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_textview_align,spinnerItems );
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinneradapter.setDropDownViewResource(R.layout.spinner_textview_align);
+        spinner.setAdapter(spinneradapter);
         spinner.setOnItemSelectedListener(this);
 
         return view;
@@ -156,9 +175,9 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
 
             MainActivity.overtid.remove(position);
             adapter.notifyDataSetChanged();
-
+            FragmentOne.oppdaterFragOne();
             //Oppdaterer fragOne tekstene
-            FragmentOne.antTimer.setText(Overtid.visTotatl());
+           /* FragmentOne.antTimer.setText(Overtid.visTotatl());
             FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
             FragmentOne.timerDenneMnd.setText(Double.toString(Overtid.timerDenneMnd()));
             FragmentOne.progressStatus = Overtid.avstandTilTargetSum();
@@ -168,7 +187,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
             FragmentOne.sumDenneMnd.setText(FragmentOne.sumCurrMnd);
             FragmentOne.progressStatusDenneMND = Overtid.avstandDenneMND();
             FragmentOne. prosentMND.setText(FragmentOne.progressStatusDenneMND+" %");
-            FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
+            FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);*/
 
     }
 
