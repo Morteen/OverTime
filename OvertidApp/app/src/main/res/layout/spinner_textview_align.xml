@@ -10,14 +10,13 @@
     android:padding="15dp"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    android:textColor="#838986"
     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-
     android:textAlignment="gravity"
     android:gravity="center"
-
+    android:background="@color/min_grey"
 
 
     />
     <!-- android:textSize="16sp"
+     android:textColor="#838986"
         android:gravity="center"-->

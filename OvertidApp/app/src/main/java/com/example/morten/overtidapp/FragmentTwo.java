@@ -31,7 +31,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
     Spinner spinner;
     Dialog dialog;
     String[] spinnerItems = new String[]{
-            "Vis alle",
+            "Vis alle månder",
             "Januar",
             "Februar",
             "Mars",
@@ -90,7 +90,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
                     }
                 });
                 // TODO Auto-generated method stub
-                Toast.makeText(getActivity(),"Hei fra LongClick! "+pos, Toast.LENGTH_SHORT).show();
+
 
                 Log.v("long clicked","pos: " + pos);
                 dialog.show();
@@ -101,10 +101,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
         startListView.setAdapter(adapter);
 
         spinner = (Spinner) view.findViewById(R.id.spinner);
-       /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.mnd_array, android.R.layout.simple_spinner_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
         ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_textview_align,spinnerItems );
         // Apply the adapter to the spinner
         spinneradapter.setDropDownViewResource(R.layout.spinner_textview_align);
@@ -119,27 +116,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-/*
-        int minId = MainActivity.overtid.get(position).getId();
-        if (position > -1) {
-            db.deleteTid(minId);
 
-            MainActivity.overtid.remove(position);
-            adapter.notifyDataSetChanged();
-
-            //Oppdaterer fragOne tekstene
-            FragmentOne.antTimer.setText(Overtid.visTotatl());
-            FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
-            FragmentOne.timerDenneMnd.setText(Double.toString(Overtid.timerDenneMnd()));
-            FragmentOne.progressStatus = Overtid.avstandTilTargetSum();
-            FragmentOne.progressBar.setProgress(FragmentOne.progressStatus);
-            FragmentOne.timerCurrMnd = Double.toString(Overtid.timerDenneMnd());
-            FragmentOne.sumDenneMnd.setText(FragmentOne.sumCurrMnd);
-            FragmentOne.progressStatusDenneMND = Overtid.avstandDenneMND();
-            FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
-
-
-        }*/
 
 
     }
@@ -151,7 +128,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), "Spinner position !:"+position , Toast.LENGTH_SHORT).show();
+
         ArrayList<Overtid> temp = Overtid.velgMnd(position);
         if (temp.size() > 0) {
             adapter = new OvertidsAdapter(getContext(), temp);
@@ -176,18 +153,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
             MainActivity.overtid.remove(position);
             adapter.notifyDataSetChanged();
             FragmentOne.oppdaterFragOne();
-            //Oppdaterer fragOne tekstene
-           /* FragmentOne.antTimer.setText(Overtid.visTotatl());
-            FragmentOne.visTotalsum.setText(Double.toString(Overtid.visTotatlIntjent()));
-            FragmentOne.timerDenneMnd.setText(Double.toString(Overtid.timerDenneMnd()));
-            FragmentOne.progressStatus = Overtid.avstandTilTargetSum();
-            FragmentOne.progressBar.setProgress(FragmentOne.progressStatus);
-            FragmentOne. prosentAar.setText(FragmentOne.progressStatus+" %");
-            FragmentOne.timerCurrMnd = Double.toString(Overtid.timerDenneMnd());
-            FragmentOne.sumDenneMnd.setText(FragmentOne.sumCurrMnd);
-            FragmentOne.progressStatusDenneMND = Overtid.avstandDenneMND();
-            FragmentOne. prosentMND.setText(FragmentOne.progressStatusDenneMND+" %");
-            FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);*/
+
 
     }
 

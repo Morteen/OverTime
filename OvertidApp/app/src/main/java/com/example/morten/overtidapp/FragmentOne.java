@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -47,7 +46,7 @@ static int progressStatus, progressStatusDenneMND;
             timerCurrMnd=Double.toString(Overtid.timerDenneMnd());
             progressStatus=Overtid.avstandTilTargetSum();
             progressStatusDenneMND=Overtid.avstandDenneMND();
-            Toast.makeText(getActivity(), "Progress status"+progressStatus, Toast.LENGTH_SHORT).show();
+
 
         }
     }

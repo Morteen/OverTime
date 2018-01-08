@@ -3,31 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.morten.overtidapp.FragmentThree"
-    android:background="@color/colorPrimary">
-
-
-    <ImageView
-        android:id="@+id/seilboat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="88dp"
-        android:layout_marginTop="76dp"
-        android:padding="5dp"
-        android:src="@drawable/seilboat" />
+    tools:context="com.example.morten.overtidapp.FragmentThree">
 
     <TextView
         android:id="@+id/motivasjon"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/seilboat"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/dager"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="5dp"
+        android:ellipsize="none"
+        android:scrollHorizontally="false"
+        android:text="dager til Hellas"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+    <TextView
+        android:id="@+id/dager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/motivasjon"
         android:layout_alignParentTop="true"
-        android:layout_gravity="top"
-        android:layout_marginEnd="19dp"
-        android:padding="40dp"
-        android:text="Motivasjon"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_marginEnd="94dp"
+        android:layout_marginTop="99dp"
+        android:text="178"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 </RelativeLayout>

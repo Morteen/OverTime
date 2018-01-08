@@ -18,6 +18,8 @@
         <item name="darkred" type="color">#FFCC0000</item>
         <item  name="black_text" type="color">#000000  </item>
          <item name="alice_blue" type="color">#f0f8ff </item>
+         <item name="min_grey" type="color">#e5e5e5</item>
+    <item name="darker_grey" type="color">#aeadad</item>
 
         <integer-array name="androidcolors">
             <item>@color/blue</item>
