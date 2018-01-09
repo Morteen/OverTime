@@ -10,10 +10,7 @@
     <string name="ok">Slett</string>
     <string name="dager">Det er </string>
     <string name="reiser"> dager til Hellas </string>
-
-
-
-
+    <string name="avreisetexts">dager til Hellas</string>
 
 
 </resources>

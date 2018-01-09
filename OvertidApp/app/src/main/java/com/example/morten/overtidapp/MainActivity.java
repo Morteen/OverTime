@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Antall dager til vi reiser er "+antDagerTil(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -156,6 +156,38 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         overtid = savedInstanceState.getParcelableArrayList("OvertidListe");
 
+    }
+    public static String antDagerTil() {
+        // Creates two calendars instances
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+
+        // Sett dato for  target dato i den ene calendar instance
+        //get Curdate i mili sek i den andre
+
+        cal2.set(2018, Calendar.JULY, 6);
+
+        // Get the represented date in milliseconds
+        long millis1 = cal1.getTimeInMillis();
+        long millis2 = cal2.getTimeInMillis();
+
+        // Calculate difference in milliseconds
+        long diff = millis2 - millis1;
+
+        // Calculate difference in seconds
+        long diffSeconds = diff / 1000;
+
+        // Calculate difference in minutes
+        long diffMinutes = diff / (60 * 1000);
+
+        // Calculate difference in hours
+        long diffHours = diff / (60 * 60 * 1000);
+
+        // Calculate difference in days
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+
+
+        return Long.toString(diffDays);
     }
 
 
