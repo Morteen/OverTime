@@ -18,7 +18,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
         switch ( i){
             case 0: return new FragmentOne();
             case 1: return  new FragmentTwo();
-            case 2: return  new FragmentThree();
+            case 2: return  new Frag_Fire();
+            case 3: return  new FragmentThree();
+
              default:break;
 
         }
@@ -27,6 +29,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

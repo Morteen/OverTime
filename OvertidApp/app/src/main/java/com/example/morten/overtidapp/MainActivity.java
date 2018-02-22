@@ -1,6 +1,7 @@
 package com.example.morten.overtidapp;
 
 import android.app.Dialog;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         PagerAdapter pAdpter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pAdpter);
         overtid = new ArrayList<Overtid>();
-        dbhandler = new MyDbHandler(this, null, null, MyDbHandler.DATABASEVERSJON);
-        overtid = dbhandler.getAllOvertid(dbhandler);
+
+             new setlistAsynk().execute();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -189,6 +190,60 @@ public class MainActivity extends AppCompatActivity {
 
         return Long.toString(diffDays);
     }
+
+
+
+
+
+
+
+    class setlistAsynk extends AsyncTask<String, Void, String> {
+
+
+
+        public setlistAsynk() {
+            super();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            dbhandler = new MyDbHandler(MainActivity.this, null, null, MyDbHandler.DATABASEVERSJON);
+            overtid = dbhandler.getAllOvertid(dbhandler);
+            if(overtid.size()>0){
+                return null;
+            }else{
+                return "Kunne ikke laste listen!";
+            }
+
+
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+            if (result== null) {
+
+
+            } else {
+
+                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+
+
+    }//Slutt på asynk classen
 
 
 }

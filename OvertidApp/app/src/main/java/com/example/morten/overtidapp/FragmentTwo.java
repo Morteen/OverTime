@@ -109,7 +109,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
         spinner.setOnItemSelectedListener(this);
 
         return view;
-    }
+}
 
 
     @Override
@@ -131,6 +131,10 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
 
         ArrayList<Overtid> temp = Overtid.velgMnd(position);
         if (temp.size() > 0) {
+            Overtid tempOvertid = new Overtid();
+            tempOvertid.setAntTimer(regnTotMaantligeTimer(temp));
+            tempOvertid.setInfo("Totalt antall timer denne måneden");
+            temp.add(tempOvertid);
             adapter = new OvertidsAdapter(getContext(), temp);
             startListView.setAdapter(adapter);
         } else {
@@ -159,5 +163,14 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
 
 
 }
+    private Double regnTotMaantligeTimer(ArrayList<Overtid>temp){
+        double tempTimer=0;
+        for(int i=0;i<temp.size();i++){
+            tempTimer+=temp.get(i).getAntTimer();
+
+        }
+
+        return tempTimer;
+    }
 
 }

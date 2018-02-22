@@ -35,6 +35,8 @@ static int progressStatus, progressStatusDenneMND;
         mSum = getArguments() != null ? getArguments().getDouble("sum") : 0.0;
         curMnd = getArguments() != null ? getArguments().getDouble("curMnd") : 0.0;
         curMndSum = getArguments() != null ? getArguments().getDouble("curMndsum") : 0.0;
+        progressStatus=getArguments()!=null?getArguments().getInt("progressStatus"):0;
+
         antTimerOvertid=Double.toString(mNum);
         totSum=Double.toString(mSum);
         timerCurrMnd=Double.toString(curMnd);
@@ -96,6 +98,7 @@ static int progressStatus, progressStatusDenneMND;
         outState.putDouble("sum", mSum);
         outState.putDouble("curMnd",curMnd);
         outState.putDouble("curMndsum",curMndSum);
+        outState.putInt("progressStatus",progressStatus);
         // TODO: 06.01.2018  Legg til progrss status slik at disse virker ved orienterings forandring
 
 

@@ -3,7 +3,6 @@
     <string name="action_settings">Settings</string>
 
 
-
     <string name="fragEntest">Her kommer oversikt over totalt antall og denne måneden</string>
     <string name="HeaderFragEn">Overtid Stats  </string>
     <string name="avbryt">Avbryt</string>
@@ -11,6 +10,9 @@
     <string name="dager">Det er </string>
     <string name="reiser"> dager til Hellas </string>
     <string name="avreisetexts">dager til Hellas</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -165,6 +165,32 @@ public class Overtid implements Parcelable {
         return sum;
 
     }
+
+
+    public static String timerMnd(int mnd) {
+
+        String sum = "";
+        String sjekk;
+        String currMnd = Integer.toString(mnd + 1);
+
+        for (int i = 0; i < MainActivity.overtid.size(); i++) {
+            sjekk = MainActivity.overtid.get(i).getDato();
+            String[] date = sjekk.split(Pattern.quote("."));
+
+            if (currMnd.equals(date[1])) {
+
+                sum += MainActivity.overtid.get(i).getAntTimer();
+
+            }
+        }
+
+
+        return sum;
+
+    }
+
+
+
     public  static int avstandTilTargetSum(){
        double inntjent=visTotatlIntjent();
        if((int) Math.round((double)inntjent/TARGETSUM *100)>1){
@@ -225,4 +251,5 @@ return null;
 
 
     }
+
 }
