@@ -131,15 +131,18 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
 
         ArrayList<Overtid> temp = Overtid.velgMnd(position);
         if (temp.size() > 0) {
-            Overtid tempOvertid = new Overtid();
-            tempOvertid.setAntTimer(regnTotMaantligeTimer(temp));
-            tempOvertid.setInfo("Totalt antall timer denne måneden");
-            temp.add(tempOvertid);
-            adapter = new OvertidsAdapter(getContext(), temp);
-            startListView.setAdapter(adapter);
+            if( temp!=MainActivity.overtid){
+                Overtid tempOvertid = new Overtid();
+                tempOvertid.setAntTimer(regnTotMaantligeTimer(temp));
+                tempOvertid.setInfo("Totalt antall timer denne måneden");
+                tempOvertid.setDato("0." + position);
+                temp.add(tempOvertid);
+                adapter = new OvertidsAdapter(getContext(), temp);
+                startListView.setAdapter(adapter);
+            }
         } else {
 
-            Toast.makeText(getActivity(), "Du jobbet ikke overtid den måneden!:" + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Du jobbet ikke overtid den måneden!", Toast.LENGTH_SHORT).show();
         }
     }
 

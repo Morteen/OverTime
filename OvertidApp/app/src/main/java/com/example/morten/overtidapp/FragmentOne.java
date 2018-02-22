@@ -40,6 +40,7 @@ static int progressStatus, progressStatusDenneMND;
         antTimerOvertid=Double.toString(mNum);
         totSum=Double.toString(mSum);
         timerCurrMnd=Double.toString(curMnd);
+
         sumCurrMnd=Double.toString(Overtid.lonnDenneMND());
 
         if(MainActivity.overtid.size()>0){

@@ -150,17 +150,18 @@ public class Overtid implements Parcelable {
         String sjekk;
         String currMnd = Integer.toString(calender.get(Calendar.MONTH) + 1);
 
-        for (int i = 0; i < MainActivity.overtid.size(); i++) {
-            sjekk = MainActivity.overtid.get(i).getDato();
-            String[] date = sjekk.split(Pattern.quote("."));
+        if(MainActivity.overtid!=null) {
+            for (int i = 0; i < MainActivity.overtid.size(); i++) {
+                sjekk = MainActivity.overtid.get(i).getDato();
+                String[] date = sjekk.split(Pattern.quote("."));
 
-            if (currMnd.equals(date[1])) {
+                if (currMnd.equals(date[1])) {
 
-                sum += MainActivity.overtid.get(i).getAntTimer();
+                    sum += MainActivity.overtid.get(i).getAntTimer();
 
+                }
             }
         }
-
 
         return sum;
 
