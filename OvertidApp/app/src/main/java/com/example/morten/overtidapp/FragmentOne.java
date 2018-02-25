@@ -20,6 +20,7 @@ double mNum,mSum,curMnd,curMndSum;
 MyDbHandler dbHandler;
 static ProgressBar progressBar,progressDenneMND;
 static int progressStatus, progressStatusDenneMND;
+    MyDbHandler dbhandler;
 
     public FragmentOne() {
         // Required empty public constructor
@@ -41,9 +42,10 @@ static int progressStatus, progressStatusDenneMND;
         totSum=Double.toString(mSum);
         timerCurrMnd=Double.toString(curMnd);
 
+
         sumCurrMnd=Double.toString(Overtid.lonnDenneMND());
 
-        if(MainActivity.overtid.size()>0){
+        if(MainActivity.overtid!=null&&MainActivity.overtid.size()>0){
             antTimerOvertid=Overtid.visTotatl();
             totSum=Double.toString(Overtid.visTotatlIntjent());
             timerCurrMnd=Double.toString(Overtid.timerDenneMnd());
@@ -124,7 +126,6 @@ static int progressStatus, progressStatusDenneMND;
             FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
 
         }
-
 
 
 

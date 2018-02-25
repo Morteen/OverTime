@@ -134,7 +134,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
             if( temp!=MainActivity.overtid){
                 Overtid tempOvertid = new Overtid();
                 tempOvertid.setAntTimer(regnTotMaantligeTimer(temp));
-                tempOvertid.setInfo("Totalt antall timer denne måneden");
+                tempOvertid.setInfo("Totalt antall timer i "+spinnerItems[position]);
                 tempOvertid.setDato("0." + position);
                 temp.add(tempOvertid);
                 adapter = new OvertidsAdapter(getContext(), temp);
