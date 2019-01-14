@@ -130,7 +130,7 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         ArrayList<Overtid> temp = Overtid.velgMnd(position);
-        if (temp.size() > 0) {
+        if (temp!=null&&temp.size() > 0) {
             if( temp!=MainActivity.overtid){
                 Overtid tempOvertid = new Overtid();
                 tempOvertid.setAntTimer(regnTotMaantligeTimer(temp));

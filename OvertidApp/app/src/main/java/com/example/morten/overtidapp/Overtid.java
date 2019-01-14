@@ -81,7 +81,7 @@ public class Overtid implements Parcelable {
 
         }
 
-        return "" + (int) Math.round((double)teller);
+        return "" + teller;
     }
 
     public static double visTotatlIntjent() {

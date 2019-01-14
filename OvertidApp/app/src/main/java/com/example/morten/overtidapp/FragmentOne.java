@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class FragmentOne extends android.support.v4.app.Fragment  {
 static String antTimerOvertid,totSum,timerCurrMnd,sumCurrMnd;
 static TextView antTimer, visbase,visTotalsum,timerDenneMnd,sumDenneMnd,prosentMND,prosentAar;
-double mNum,mSum,curMnd,curMndSum;
+double mNum,mSum,curMnd,curMndSum,sumDMnd;
 MyDbHandler dbHandler;
 static ProgressBar progressBar,progressDenneMND;
 static int progressStatus, progressStatusDenneMND;
@@ -33,6 +33,7 @@ static int progressStatus, progressStatusDenneMND;
         /*Legger disse data her slik at tlf oppdatere seg når man snur den
         onRestorInstanteState virker i fragmenter*/
         mNum = getArguments() != null ? getArguments().getDouble("num") : 0.0;
+        sumDMnd = getArguments() != null ? getArguments().getDouble("sumDenneMnd") : 0.0;
         mSum = getArguments() != null ? getArguments().getDouble("sum") : 0.0;
         curMnd = getArguments() != null ? getArguments().getDouble("curMnd") : 0.0;
         curMndSum = getArguments() != null ? getArguments().getDouble("curMndsum") : 0.0;
@@ -41,8 +42,6 @@ static int progressStatus, progressStatusDenneMND;
         antTimerOvertid=Double.toString(mNum);
         totSum=Double.toString(mSum);
         timerCurrMnd=Double.toString(curMnd);
-
-
         sumCurrMnd=Double.toString(Overtid.lonnDenneMND());
 
         if(MainActivity.overtid!=null&&MainActivity.overtid.size()>0){
@@ -51,6 +50,7 @@ static int progressStatus, progressStatusDenneMND;
             timerCurrMnd=Double.toString(Overtid.timerDenneMnd());
             progressStatus=Overtid.avstandTilTargetSum();
             progressStatusDenneMND=Overtid.avstandDenneMND();
+            sumCurrMnd=Double.toString(Overtid.lonnDenneMND());
 
 
         }
@@ -98,6 +98,7 @@ static int progressStatus, progressStatusDenneMND;
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putDouble("num", mNum);
+        outState.putDouble("sumDenneMnd", sumDMnd);
         outState.putDouble("sum", mSum);
         outState.putDouble("curMnd",curMnd);
         outState.putDouble("curMndsum",curMndSum);

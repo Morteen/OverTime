@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                             tid.setInfo(info.getText().toString());
                         }
 
-
                         overtid.add(tid);
                         dbhandler.addTid(tid);
                         FragmentOne.oppdaterFragOne();
