@@ -24,9 +24,11 @@ import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
     static ArrayList<Overtid> overtid;
+    static Overtid tid;
     MyDbHandler dbhandler;
     Calendar calender;
     private String dato;
+    private Dialog dialog;
 
 
     @Override
@@ -36,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         calender = GregorianCalendar.getInstance();
-
+        dialog = new Dialog(MainActivity.this);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         PagerAdapter pAdpter = new PagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pAdpter);
         overtid = new ArrayList<Overtid>();
 
-            new setlistAsynk().execute();
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        final Dialog dialog = new Dialog(MainActivity.this);
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Du må legge inn antall timer overtid", Toast.LENGTH_SHORT).show();
                     } else {
 
-                        Overtid tid = new Overtid(Double.parseDouble(mAntTimer.getText().toString()));
+                        tid = new Overtid(Double.parseDouble(mAntTimer.getText().toString()));
                         if ((mDato.getText().toString().isEmpty())) {
                             tid.setDato(dato);
 
@@ -111,13 +113,14 @@ public class MainActivity extends AppCompatActivity {
                             tid.setInfo(info.getText().toString());
                         }
 
-                        overtid.add(tid);
-                        dbhandler.addTid(tid);
-                        FragmentOne.oppdaterFragOne();
+
+                        new setlistAsynk().execute();
 
 
 
-                        dialog.dismiss();
+
+
+
                     }
 
 
@@ -190,15 +193,9 @@ public class MainActivity extends AppCompatActivity {
         return Long.toString(diffDays);
     }
 
-
-
-
-
-
-
     class setlistAsynk extends AsyncTask<String, Void, String> {
 
-
+private int tempSize=MainActivity.overtid.size();
 
         public setlistAsynk() {
             super();
@@ -214,12 +211,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
+
             dbhandler = new MyDbHandler(MainActivity.this, null, null, MyDbHandler.DATABASEVERSJON);
-            overtid = dbhandler.getAllOvertid(dbhandler);
-            if(overtid.size()>0){
+            MainActivity.overtid = dbhandler.getAllOvertid(dbhandler);
+            dbhandler.addTid(tid);
+            overtid.add(tid);
+            if(MainActivity.overtid.size()>tempSize){
                 return null;
             }else{
-                return "Kunne ikke laste listen!";
+                return "Kunne ikke laste den nye overtiden!";
             }
 
 
@@ -231,18 +231,24 @@ public class MainActivity extends AppCompatActivity {
 
 
             if (result== null) {
-
+                FragmentOne.oppdaterFragOne();
 
             } else {
 
                 Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
 
             }
-
+            dialog.dismiss();
         }
 
 
     }//Slutt på asynk classen
+
+
+
+
+
+
 
 
 }

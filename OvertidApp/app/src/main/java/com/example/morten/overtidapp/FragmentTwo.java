@@ -129,21 +129,31 @@ public class FragmentTwo extends android.support.v4.app.Fragment implements Adap
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        ArrayList<Overtid> temp = Overtid.velgMnd(position);
-        if (temp!=null&&temp.size() > 0) {
-            if( temp!=MainActivity.overtid){
-                Overtid tempOvertid = new Overtid();
-                tempOvertid.setAntTimer(regnTotMaantligeTimer(temp));
-                tempOvertid.setInfo("Totalt antall timer i "+spinnerItems[position]);
-                tempOvertid.setDato("0." + position);
-                temp.add(tempOvertid);
-                adapter = new OvertidsAdapter(getContext(), temp);
-                startListView.setAdapter(adapter);
-            }
-        } else {
+        if(position==0){
+            adapter = new OvertidsAdapter(getContext(), MainActivity.overtid);
+            startListView.setAdapter(adapter);
+        }else{
 
-            Toast.makeText(getActivity(), "Du jobbet ikke overtid den måneden!", Toast.LENGTH_SHORT).show();
+            ArrayList<Overtid> temp = Overtid.velgMnd(position);
+            if (temp!=null&&temp.size() > 0) {
+                if( temp!=MainActivity.overtid){
+                    Overtid tempOvertid = new Overtid();
+                    tempOvertid.setAntTimer(regnTotMaantligeTimer(temp));
+                    tempOvertid.setInfo("Totalt antall timer i "+spinnerItems[position]);
+                    tempOvertid.setDato("0." + position);
+                    temp.add(tempOvertid);
+                    adapter = new OvertidsAdapter(getContext(), temp);
+                    startListView.setAdapter(adapter);
+                }
+            } else {
+
+                Toast.makeText(getActivity(), "Du jobbet ikke overtid den måneden!", Toast.LENGTH_SHORT).show();
+            }
+
+
+
         }
+
     }
 
     @Override

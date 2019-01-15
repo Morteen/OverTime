@@ -2,12 +2,14 @@ package com.example.morten.overtidapp;
 
 
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -20,6 +22,9 @@ double mNum,mSum,curMnd,curMndSum,sumDMnd;
 MyDbHandler dbHandler;
 static ProgressBar progressBar,progressDenneMND;
 static int progressStatus, progressStatusDenneMND;
+    private ProgressBar spinner;
+
+
     MyDbHandler dbhandler;
 
     public FragmentOne() {
@@ -42,7 +47,7 @@ static int progressStatus, progressStatusDenneMND;
         antTimerOvertid=Double.toString(mNum);
         totSum=Double.toString(mSum);
         timerCurrMnd=Double.toString(curMnd);
-        sumCurrMnd=Double.toString(Overtid.lonnDenneMND());
+        sumCurrMnd=Double.toString(sumDMnd);
 
         if(MainActivity.overtid!=null&&MainActivity.overtid.size()>0){
             antTimerOvertid=Overtid.visTotatl();
@@ -63,8 +68,10 @@ static int progressStatus, progressStatusDenneMND;
         // Inflate the layout for this fragment
 
         View view= inflater.inflate(R.layout.fragment_fragment_one2, container, false);
-
+        new setlistAsynk().execute();
        dbHandler = new MyDbHandler(getActivity(),null,null,1);
+        spinner=(ProgressBar)view.findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         antTimer=(TextView)view.findViewById(R.id.antTimer);
         visbase=(TextView)view.findViewById(R.id.visbase);
@@ -127,6 +134,63 @@ static int progressStatus, progressStatusDenneMND;
             FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
 
         }
+
+
+
+    class setlistAsynk extends AsyncTask<String, Void, String> {
+
+
+
+        public setlistAsynk() {
+            super();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+
+            dbhandler = new MyDbHandler(getActivity(), null, null, MyDbHandler.DATABASEVERSJON);
+            MainActivity.overtid = dbhandler.getAllOvertid(dbhandler);
+            if(MainActivity.overtid.size()>0){
+                return null;
+            }else{
+                return "Kunne ikke laste listen!";
+            }
+
+
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            spinner.setVisibility(View.GONE);
+
+            if (result== null) {
+                oppdaterFragOne();
+
+            } else {
+
+                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+
+
+    }//Slutt på asynk classen
+
+
+
+
+
+
 
 
 
