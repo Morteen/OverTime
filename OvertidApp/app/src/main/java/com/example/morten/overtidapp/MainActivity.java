@@ -1,5 +1,6 @@
 package com.example.morten.overtidapp;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -165,17 +166,21 @@ public class MainActivity extends AppCompatActivity {
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
 
+
+
         // Sett dato for  target dato i den ene calendar instance
         //get Curdate i mili sek i den andre
 
-        cal2.set(2018, Calendar.JULY, 6);
+        cal2.set(2019, Calendar.JULY, 11);
 
         // Get the represented date in milliseconds
         long millis1 = cal1.getTimeInMillis();
         long millis2 = cal2.getTimeInMillis();
 
+
         // Calculate difference in milliseconds
         long diff = millis2 - millis1;
+
 
         // Calculate difference in seconds
         long diffSeconds = diff / 1000;
@@ -193,6 +198,50 @@ public class MainActivity extends AppCompatActivity {
         return Long.toString(diffDays);
     }
 
+    ///////
+    public static String HvorlengeTilJobbBytte() {
+        // Creates two calendars instances
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+
+
+
+        // Sett dato for  target dato i den ene calendar instance
+        //get Curdate i mili sek i den andre
+
+        cal2.set(2019, Calendar.MAY, 1);
+
+        // Get the represented date in milliseconds
+        long millis1 = cal1.getTimeInMillis();
+        long millis2 = cal2.getTimeInMillis();
+
+
+        // Calculate difference in milliseconds
+        long diff = millis2 - millis1;
+
+
+        // Calculate difference in seconds
+        long diffSeconds = diff / 1000;
+
+        // Calculate difference in minutes
+        long diffMinutes = diff / (60 * 1000);
+
+        // Calculate difference in hours
+        long diffHours = diff / (60 * 60 * 1000);
+
+        // Calculate difference in days
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+
+
+        return Long.toString(diffDays);
+    }
+
+    ///////////
+
+
+
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     class setlistAsynk extends AsyncTask<String, Void, String> {
 
 private int tempSize=MainActivity.overtid.size();

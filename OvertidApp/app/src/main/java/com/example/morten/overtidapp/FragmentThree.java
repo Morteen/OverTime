@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class FragmentThree extends android.support.v4.app.Fragment {
 
 
-    TextView motivasjon, dager;
+    TextView motivasjon, dager,nyJobb,dagerTilLocus;
     String reiser;
 
     public FragmentThree() {
@@ -32,10 +32,14 @@ public class FragmentThree extends android.support.v4.app.Fragment {
 
         motivasjon = (TextView) view.findViewById(R.id.motivasjon);
         dager = (TextView) view.findViewById(R.id.dager);
+        dagerTilLocus = (TextView) view.findViewById(R.id.dagerTilLocus);
+        nyJobb = (TextView) view.findViewById(R.id.nyJobb);
+
 
         reiser = getResources().getString(R.string.reiser);
 
         dager.setText(MainActivity.antDagerTil());
+        nyJobb.setText(MainActivity.HvorlengeTilJobbBytte());
         motivasjon.setText(reiser);
 
         return view;

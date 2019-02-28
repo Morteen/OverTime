@@ -1,33 +1,72 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.morten.overtidapp.FragmentThree">
 
-    <TextView
-        android:id="@+id/motivasjon"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/dager"
-        android:layout_marginTop="14dp"
-        android:layout_marginRight="10dp"
-        android:paddingLeft="10dp"
-        android:ellipsize="none"
-        android:scrollHorizontally="false"
-        android:text="@string/avreisetexts"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/dager"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/dager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/motivasjon"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="70dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_horizontal"
+            android:text="178"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display4" />
+
+        <TextView
+            android:id="@+id/motivasjon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dager"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:ellipsize="none"
+            android:paddingLeft="10dp"
+            android:scrollHorizontally="false"
+            android:text="@string/avreisetexts"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/motivasjon"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="70dp"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="99dp"
-        android:text="178"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display4" />
-</RelativeLayout>
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nyJobb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="178"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <TextView
+            android:id="@+id/dagerTilLocus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nyJobb"
+            android:layout_marginLeft="15dp"
+            android:text="dager til jeg starter hos Locus"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -3,7 +3,9 @@ package com.example.morten.overtidapp;
 
 import android.app.Fragment;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +49,7 @@ static int progressStatus, progressStatusDenneMND;
         antTimerOvertid=Double.toString(mNum);
         totSum=Double.toString(mSum);
         timerCurrMnd=Double.toString(curMnd);
-        sumCurrMnd=Double.toString(sumDMnd);
+        sumCurrMnd=Double.toString(curMndSum);
 
         if(MainActivity.overtid!=null&&MainActivity.overtid.size()>0){
             antTimerOvertid=Overtid.visTotatl();
@@ -89,13 +91,13 @@ static int progressStatus, progressStatusDenneMND;
         antTimer.setText( antTimerOvertid);
         visTotalsum.setText(totSum);
         timerDenneMnd.setText(timerCurrMnd);
-        sumDenneMnd.setText(sumCurrMnd);
+        sumDenneMnd.setText(Double.toString( Overtid.lonnDenneMND()));
         progressBar.setProgress(progressStatus);
         prosentAar.setText(progressStatus+" %");
         progressDenneMND.setProgress(progressStatusDenneMND);
         prosentMND.setText(progressStatusDenneMND+" %");
 
-
+        oppdaterFragOne();
 
 
         return view;
@@ -128,7 +130,7 @@ static int progressStatus, progressStatusDenneMND;
             FragmentOne.progressBar.setProgress(FragmentOne.progressStatus);
             FragmentOne. prosentAar.setText(FragmentOne.progressStatus+" %");
             FragmentOne.timerCurrMnd = Double.toString(Overtid.timerDenneMnd());
-            FragmentOne.sumDenneMnd.setText(FragmentOne.sumCurrMnd);
+            FragmentOne.sumDenneMnd.setText(Double.toString(Overtid.lonnDenneMND()));
             FragmentOne.progressStatusDenneMND = Overtid.avstandDenneMND();
             FragmentOne. prosentMND.setText(FragmentOne.progressStatusDenneMND+" %");
             FragmentOne.progressDenneMND.setProgress(FragmentOne.progressStatusDenneMND);
@@ -137,10 +139,12 @@ static int progressStatus, progressStatusDenneMND;
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     class setlistAsynk extends AsyncTask<String, Void, String> {
 
 
 
+        @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
         public setlistAsynk() {
             super();
         }
